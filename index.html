@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Tarefas</title>
+    <style>
+        .tarefa-concluida {
+            text-decoration: line-through;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Lista de Tarefas</h1>
+    <form id="form-tarefa">
+        <input type="text" id="nome-tarefa" placeholder="Nome da tarefa">
+        <button type="submit">Cadastrar Tarefa</button>
+    </form>
+    <ul id="lista-tarefas"></ul>
+
+    <script>
+        $(document).ready(function() {
+            $("#form-tarefa").submit(function(event) {
+                event.preventDefault();
+                const nomeTarefa = $("#nome-tarefa").val();
+                if (nomeTarefa) {
+                    $("#lista-tarefas").append(`<li class="tarefa">${nomeTarefa}</li>`);
+                    $("#nome-tarefa").val("");
+                }
+            });
+
+            $("#lista-tarefas").on("click", ".tarefa", function() {
+                $(this).toggleClass("tarefa-concluida");
+            });
+        });
+    </script>
+</body>
+</html>
